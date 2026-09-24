@@ -64,6 +64,17 @@ export function motifDeRefus(candidat, reference, { seuilChute = SEUIL_CHUTE } =
   return null;
 }
 
+// Le contrôle de déploiement (ticket sécurité 03) : la source retenue pour le
+// snapshot est la première complète, le script d'ordinaire. Mais si le script
+// tombe le jour J, les téléphones liront le SECOURS (gviz) : un secours vide ou en
+// retrait serait refusé par la barrière ci-dessus, et l'appli resterait figée sur
+// sa dernière version — survivable, mais c'est au déploiement qu'on veut le savoir.
+// Renvoie null si le secours vaut la source retenue, sinon le motif.
+export function motifSecoursInsuffisant(secours, retenu, { seuilChute = SEUIL_CHUTE } = {}) {
+  if (!secours) return 'secours injoignable';
+  return motifDeRefus(secours, retenu, { seuilChute });
+}
+
 // L'URL d'un point d'entrée du script (le scriptUrl peut déjà porter une requête).
 export function urlAction(scriptUrl, action) {
   if (!scriptUrl) throw new Error('script Apps Script non configuré');

@@ -27,7 +27,7 @@ export const CONFIG = {
   // bin/deploy.sh --cible=dev la réécrit dans la seule copie servie.
   urlPublique: 'https://festival.apelrondeau77.fr/',
   // Version de l'appli : change à chaque déploiement (bin/deploy.sh), pilote le cache du service worker.
-  version: '2026.09.25-6043025',
+  version: '2026.09.25-a519933',
   // Rafraîchissement des données (ms) et envoi des mesures (ms).
   // intervalleStats est à 180 s, pas 30 : le test de charge du 2026-09-08 a mesuré
   // que l'écriture de l'onglet Stats plafonne vers 2,2 requêtes par seconde (le
@@ -44,11 +44,10 @@ export const CONFIG = {
   // 06) demandera une minute : c'est là qu'il faudra recompter les requêtes.
   intervalleJeu: 300000,
   intervalleStats: 180000,
-  // Les langues proposées au Visiteur (ADR-0016, 2026-09-23). Français seul : sans
-  // traduction automatique, les textes du tableur resteraient en français sous des
-  // menus traduits, une interface à moitié traduite. Avec une seule langue, ni
-  // détection de la langue du téléphone, ni « ?lang= », ni sélecteur. Les
-  // dictionnaires de app/js/i18n/ restent en place : remettre
-  // ['fr', 'en', 'es', 'zh'] rallume tout, sans rien réécrire.
-  langues: ['fr'],
+  // Les langues proposées au Visiteur (ADR-0012). Français seul du 2026-09-23
+  // (ADR-0016 : sans traduction, une interface à moitié traduite) au 2026-09-25 :
+  // le Push traduit désormais les textes du tableur avant de les publier (ticket
+  // publication 04), et `npm run langues` vérifie que chaque texte servi a ses trois
+  // traductions (ticket 05). Remettre ['fr'] éteint tout sans rien réécrire.
+  langues: ['fr', 'en', 'es', 'zh'],
 };

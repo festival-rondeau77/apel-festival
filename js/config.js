@@ -11,7 +11,10 @@ export const CONFIG = {
   // ni transmise ni imprimée. bin/deploy.sh choisit par --cible ; l'appli ne lit jamais
   // ce bloc.
   cibles: {
-    prod: { owner: 'festival-rondeau77', repo: 'apel-festival', jeu: 'https://festival-jeu.festival-e23.workers.dev' },
+    // `analytics` : le jeton du site Cloudflare Web Analytics de la prod (analytics 01, ADR-0024),
+    // public par nature (il est dans la page servie). bin/deploy.sh --cible=prod l'écrit dans
+    // `analytics:` de la seule copie servie ; le dev, la machine et la fumée n'en ont jamais.
+    prod: { owner: 'festival-rondeau77', repo: 'apel-festival', jeu: 'https://festival-jeu.festival-e23.workers.dev', analytics: 'cc8a1d8d156542dfa4ae3e4822d4ff82' },
     // `classeur` : le secours gviz de la copie servie en dev (le classeur de dev, fictif,
     // mêmes onglets « Export … »), écrit par bin/deploy.sh --cible=dev.
     dev: { owner: 'festival-rondeau77', repo: 'apel-festival-dev', jeu: 'https://festival-jeu-dev.festival-e23.workers.dev', classeur: '1JQLl1_DQ8H14_b_LPByCnGSYNrYC9SOIWUced_E7u6Q' },
@@ -22,12 +25,16 @@ export const CONFIG = {
   // --demo le vide. Vide = pas de jeu : l'appli d'avant le Grand Défi. Sur la
   // machine (npm run servir), l'appli joue contre le Worker local, jamais celui-ci.
   jeuUrl: 'https://festival-jeu.festival-e23.workers.dev',
+  // Cloudflare Web Analytics (analytics 01, ADR-0024) : le compteur de visites, sans cookie.
+  // Vide ici, toujours : bin/deploy.sh --cible=prod y écrit `cibles.prod.analytics` dans la
+  // copie servie. Vide = aucun compteur (dev, machine, fumée, démonstration).
+  analytics: 'cc8a1d8d156542dfa4ae3e4822d4ff82',
   // L'URL de la PRODUCTION, toujours : c'est elle que bin/qrcodes.mjs grave dans les
   // chevalets (ADR-domaine 0009). Un QR code n'encode jamais le dev ;
   // bin/deploy.sh --cible=dev la réécrit dans la seule copie servie.
   urlPublique: 'https://festival.apelrondeau77.fr/',
   // Version de l'appli : change à chaque déploiement (bin/deploy.sh), pilote le cache du service worker.
-  version: '2026.09.26-0b984cb',
+  version: '2026.09.30-0e25a81',
   // Rafraîchissement des données (ms) et envoi des mesures (ms).
   // intervalleStats est à 180 s, pas 30 : le test de charge du 2026-09-08 a mesuré
   // que l'écriture de l'onglet Stats plafonne vers 2,2 requêtes par seconde (le

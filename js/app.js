@@ -22,7 +22,7 @@ const etat = {
   route: analyserRoute(location.hash),
   modele: construireModele({}), tables: null, version: null, source: null, derniereMaj: null, bandeau: '',
   // La langue affichée (ADR-0012) et les traductions du bandeau jointes à l'état
-  // du script ({ en, es, zh }) — celles du tableur passent par tt().
+  // du script ({ en, es, zh, de }) — celles du tableur passent par tt().
   langue: 'fr', bandeaux: null,
   // Le thème, clair par défaut (le festival a lieu le jour) ; le sombre est un choix, mémorisé.
   theme: 'clair',

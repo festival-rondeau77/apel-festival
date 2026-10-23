@@ -34,7 +34,7 @@ export const CONFIG = {
   // bin/deploy.sh --cible=dev la réécrit dans la seule copie servie.
   urlPublique: 'https://festival.apelrondeau77.fr/',
   // Version de l'appli : change à chaque déploiement (bin/deploy.sh), pilote le cache du service worker.
-  version: '2026.10.14-b4be774',
+  version: '2026.10.23-4ba9b7c',
   // Rafraîchissement des données (ms) et envoi des mesures (ms).
   // intervalleStats est à 180 s, pas 30 : le test de charge du 2026-09-08 a mesuré
   // que l'écriture de l'onglet Stats plafonne vers 2,2 requêtes par seconde (le
